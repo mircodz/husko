@@ -217,7 +217,7 @@ function createStateChangeListener (xhr, callback) {
   return function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       try {
-				const parser = new DOMParser()
+        const parser = new DOMParser()
         callback(null, parser.parseFromString(xhr.responseText, "text/xml"))
       } catch (err) {
         callback(err, null)
@@ -371,17 +371,17 @@ var _$src_8 = {};
 
   function initWithJSON (json) {
     _$Repository_4.put(
-			Array.from(json.getElementsByTagName("item")).map(item => {
-				const title = item.getElementsByTagName('title')[0]
-				const link =  item.getElementsByTagName('link')[0]
-				const desc =  item.getElementsByTagName('description')[0]
-				return {
-					'title': title.innerHTML,
-					'url': link.innerHTML,
-					'desc': desc.innerHTML
-				}
-			})
-		)
+      Array.from(json.getElementsByTagName("item")).map(item => {
+        const title = item.getElementsByTagName('title')[0]
+        const link =  item.getElementsByTagName('link')[0]
+        const desc =  item.getElementsByTagName('description')[0]
+        return {
+          'title': title.innerHTML,
+          'url': link.innerHTML,
+          'desc': desc.innerHTML
+        }
+      })
+    )
     registerInput()
   }
 

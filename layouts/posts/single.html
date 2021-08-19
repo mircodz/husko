@@ -2,10 +2,11 @@
 
 <section class="post">
   <div class="flex-row-between">
+    <p></p>
     <a href="{{ .Site.Params.baseURL }}">← back</a>
   </div>
-	{{ $readTime := math.Round (div (countwords .Content) 220.0) }}
-	<time datetime="{{ .Date }}" itemprop="datePublished">
+  {{ $readTime := math.Round (div (countwords .Content) 220.0) }}
+  <time datetime="{{ .Date }}" itemprop="datePublished">
     {{ .Date.Format "2 January 2006" }} - {{ $readTime }} minute read - 
     <span class="meta">
       {{ range $index, $value := .Params.tags }}
@@ -14,13 +15,13 @@
       {{ end }}
     </span>
   </time>
-	<h1 class="title">{{ .Title }}</h1>
-  {{ .Content }}
+  <h1 class="title">{{ .Title }}</h1>
+  {{ partial "headline-hash.html" .Content }}
 </section>
 
 {{ if or .PrevInSection .NextInSection }}
 <section>
-	<nav class="post-nav">
+  <nav class="post-nav">
     {{ if .PrevInSection }}
       {{ with .PrevInSection }}
         <a class="post-nav-item post-nav-prev" href="{{ .Permalink }}">
@@ -43,7 +44,7 @@
       <span class="post-nav-item post-nav-next">
       </span>
     {{ end }}
-	</nav>
+  </nav>
 </section>
 {{ end }}
 

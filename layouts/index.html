@@ -1,11 +1,11 @@
 {{ define "main" }}
 
 <section id="intro">
-	<h1>{{ .Site.Title }}</h1>
-	<div class="bio">
-		{{ if isset .Site.Params "description" }}
-			{{ .Site.Params.description }}
-		{{ end }}
+  <h1>{{ .Site.Title }}</h1>
+  <div class="bio">
+    {{ if isset .Site.Params "description" }}
+      <p>{{ .Site.Params.description }}</p>
+    {{ end }}
     {{ if isset .Site.Params "social" }}
       <p>Find me on
       {{ $length := (len .Site.Params.social) }}
@@ -37,48 +37,48 @@
       {{ end }}
       </p>
     {{ end }}
-	</div>
+  </div>
 </section>
 
 
 <div class="search-article">
-	<label for="search-input">
-		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-			stroke="rgba(128,128,128,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-			class="feather feather-search">
-			<circle cx="11" cy="11" r="8"></circle>
-			<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-		</svg>
-	</label>
-	<input type="search" id="search-input" placeholder="Find some articles here">
-	<ul id="search-results"></ul>
+  <label for="search-input">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+      stroke="rgba(128,128,128,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-search">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </label>
+  <input type="search" id="search-input" placeholder="Find some articles here">
+  <ul id="search-results"></ul>
 </div>
 
 <section class="posts" id="Blog">
-	<h2>BLOG</h2>
-	<ul>
-		{{ $mainPosts := (sort ( where site.RegularPages "Type" "in" site.Params.mainSections ) "Date" "desc") }}
-		{{ range site.RegularPages }}
-			<li class="post-item">
-				<span><a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- print "Untitled" -}}{{ end }}</a></span>
-				<time datetime="{{ .Date }}" itemprop="datePublished">{{ .Date.Format "2006-01-02" }}</time>
-			</li>
-		{{ end }}
-	</ul>
+  <h2>BLOG</h2>
+  <ul>
+    {{ $mainPosts := (sort ( where site.RegularPages "Type" "in" site.Params.mainSections ) "Date" "desc") }}
+    {{ range site.RegularPages }}
+      <li class="post-item">
+        <span><a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- print "Untitled" -}}{{ end }}</a></span>
+        <time datetime="{{ .Date }}" itemprop="datePublished">{{ .Date.Format "2006-01-02" }}</time>
+      </li>
+    {{ end }}
+  </ul>
 </section>
 
 {{ $js := resources.Get "js/search.js" | js.Build }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 <script>
-	var sjs = SimpleJekyllSearch({
-		searchInput: document.getElementById('search-input'),
-		resultsContainer: document.getElementById('search-results'),
-		json: '{{ .Site.Params.baseURL }}/index.xml',
-		searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
-		noResultsText: 'No results found..',
-		limit: 10,
-		fuzzy: true,
-	})
+  var sjs = SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '{{ .Site.Params.baseURL }}/index.xml',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found..',
+    limit: 10,
+    fuzzy: true,
+  })
 </script>
 
 {{ end }}
