@@ -1,0 +1,50 @@
+{{ define "main" }}
+
+<section class="post">
+  <div class="flex-row-between">
+    <a href="{{ .Site.Params.baseURL }}">← back</a>
+  </div>
+	{{ $readTime := math.Round (div (countwords .Content) 220.0) }}
+	<time datetime="{{ .Date }}" itemprop="datePublished">
+    {{ .Date.Format "2 January 2006" }} - {{ $readTime }} minute read - 
+    <span class="meta">
+      {{ range $index, $value := .Params.tags }}
+      {{ if gt $index 0 }} {{ print ", " }} {{ end }}
+      <span><a href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">#{{ $value }}</a><span>
+      {{ end }}
+    </span>
+  </time>
+	<h1 class="title">{{ .Title }}</h1>
+  {{ .Content }}
+</section>
+
+{{ if or .PrevInSection .NextInSection }}
+<section>
+	<nav class="post-nav">
+    {{ if .PrevInSection }}
+      {{ with .PrevInSection }}
+        <a class="post-nav-item post-nav-prev" href="{{ .Permalink }}">
+          <div class="nav-arrow">← Previous</div>
+          <span class="post-title">{{ .Title }}</span>
+        </a>
+      {{ end }}
+    {{ else }}
+      <span class="post-nav-item post-nav-prev">
+      </span>
+    {{ end }}
+    {{ if .NextInSection }}
+      {{ with .NextInSection }}
+        <a class="post-nav-item post-nav-next" href="{{ .Permalink }}">
+          <div class="nav-arrow">Next →</div>
+          <span class="post-title">{{ .Title }}</span>
+        </a>
+      {{ end }}
+    {{ else }}
+      <span class="post-nav-item post-nav-next">
+      </span>
+    {{ end }}
+	</nav>
+</section>
+{{ end }}
+
+{{ end }}

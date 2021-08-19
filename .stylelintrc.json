@@ -1,0 +1,20 @@
+{
+	"rules": {
+		"function-comma-space-after": "always",
+		"indentation": [
+				2, {
+						"indentInsideParens": "once-at-root-twice-in-block",
+						"severity": "error"
+				}
+		],
+		"at-rule-empty-line-before": [
+			"always",
+			{
+				"except": [
+					"after-same-name"
+				],
+				"severity": "warning"
+			}
+		]
+	}
+}
