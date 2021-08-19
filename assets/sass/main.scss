@@ -71,6 +71,7 @@ pre {
   font-family: var(--monospace-font);
 }
 
+:not(pre) > code,
 .verbatim {
   border: 1px dashed gray;
 }
@@ -154,11 +155,11 @@ h5 {
   margin-bottom: 1.5rem;
 }
 
-.post h2::before { content: '#'; }
-.post h3::before { content: '##'; }
-.post h4::before { content: '###'; }
-.post h5::before { content: '####'; }
-.post h6::before { content: '#####'; }
+.post h2::before { content: '# '; }
+.post h3::before { content: '## '; }
+.post h4::before { content: '### '; }
+.post h5::before { content: '#### '; }
+.post h6::before { content: '##### '; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--monospace-font);
@@ -241,6 +242,12 @@ main {
   margin: -5rem auto 0;
   padding: 2.4rem 2rem;
   flex-direction: column;
+}
+
+.flex-row-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 45rem) {
@@ -347,13 +354,15 @@ figcaption {
       color: var(--main-text-color);
     }
     
+    /*
     &:hover,
     &:focus {
       .post-title {
-        color: var(--link-color);
+        #color: var(--link-color);
         opacity: 0.9;
       }
     }
+    */
 
     .nav-arrow {
       font-size: 17px;
@@ -671,4 +680,30 @@ post-nav-item post-title:hover {
 p {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.twitter-tweet {
+  font-family: TwitterChirp;
+  color: var(--background-color);
+  background-color: var(--main-text-color);
+  padding: 0 1em 1em 0;
+
+  a:hover {
+    background-color: #2b7bb9;
+    color: var(--main-text-color);
+  }
+}
+
+body::-webkit-scrollbar {
+  height: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 20px;
+  border: 3px solid var(--background-color);
 }
